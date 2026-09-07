@@ -1,0 +1,22 @@
+body {
+    background: bisque;
+}
+
+p {
+    color: red;
+}
+
+table {
+    border: transparent 1px
+}
+#p1 {
+    color: indigo
+}
+.p2 {
+    color:cornflowerblue;
+}
+td {
+    border: 2px solid cornflowerblue ;
+    margin: 20px;
+    padding: 10px;
+}
