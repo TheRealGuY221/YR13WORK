@@ -1,0 +1,51 @@
+body {
+    background: bisque;
+}
+
+p {
+    color: red;
+}
+
+table {
+    border: solid 10px
+}
+#p1 {
+    color: indigo
+}
+.p2 {
+    color:cornflowerblue;
+}
+td {
+    border: 20px solid cornflowerblue;
+    margin: 200px;
+    padding: 100px;
+}
+#useremail {
+    border: black 10px;
+    fill: aqua;
+    margin-right: 200px;
+}
+#userpassword{
+    border: green 10px;
+    fill: red;
+    margin-right: 200px;
+    padding-bottom: 20px;
+}
+#userselct{
+    margin: 20px;
+    padding: 20px;
+
+}
+#signup{
+    border: green 200px;
+    margin: 200px;
+    position: static;
+}
+
+div {
+    background: red;
+    border: black 3px solid;
+    border-radius: 5px;
+    text-align: center;
+    width: 120px;
+}
