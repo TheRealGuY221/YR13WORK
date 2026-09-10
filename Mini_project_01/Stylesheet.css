@@ -7,18 +7,21 @@ p {
 }
 
 table {
-    border: solid 10px
+    border: solid 10px;
+    padding-right: 200px;
 }
 #p1 {
-    color: indigo
+    color: indigo;
+    padding-right: 200px;
 }
 .p2 {
     color:cornflowerblue;
+    padding-right: 200px;
 }
 td {
     border: 20px solid cornflowerblue;
     margin: 200px;
-    padding: 100px;
+    padding-right: 200px;
 }
 #useremail {
     border: black 10px;
@@ -28,17 +31,17 @@ td {
 #userpassword{
     border: green 10px;
     fill: red;
-    margin-right: 200px;
+    padding-right: 200px;
     padding-bottom: 20px;
 }
 #userselct{
     margin: 20px;
-    padding: 20px;
+    padding-right: 200px;
 
 }
 #signup{
     border: green 200px;
-    margin: 200px;
+    padding-right: 200px;
     position: static;
 }
 
@@ -48,4 +51,55 @@ div {
     border-radius: 5px;
     text-align: center;
     width: 120px;
+}
+#Navbar{
+    border: red;
+    background: aqua;
+    padding-right: 20px;
+    padding-left: 20px;
+
+
+
+}
+#titlebar{
+    border: violet;
+    background: crimson;
+    padding-right: 200px;
+}
+#content{
+    border: green;
+    width: 200px;
+    padding-right: 200px;
+}
+#options{
+    border: red;
+    background: green;
+    padding-right: 200px;
+}
+#list{
+    border: green;
+    background: pink;
+    padding-right: 200px;
+    padding-top: 200px;
+}
+#tables{
+    border: blue;
+    background: lightpink;
+}
+nav ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: flex-start;
+    background-color: #333;
+}
+nav li{
+    padding-left: 10px;
+    padding-right: 10px;
+
+}
+nav li:hover{
+    background-color: aliceblue;
+
 }
