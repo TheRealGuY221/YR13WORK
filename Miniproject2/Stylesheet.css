@@ -1,0 +1,52 @@
+body {
+    margin: 0;
+    background-color: #80D95B;
+}
+
+h1 {
+    text-align: center;
+    font-size: 58px;
+    margin-top: 15px;
+    margin-bottom: 45px;
+}
+
+.buttone {
+    display: flex;
+    width: 96%;
+    margin: auto;
+}
+
+.buttons {
+    width: 145px;
+    padding-top: 65px;
+}
+
+.button {
+    background-color: #777777;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    padding: 11px 5px;
+    margin-bottom: 98px;
+    width: 125px;
+}
+
+.main {
+    background-color: #079BA6;
+    width: 82%;
+    padding: 10px;
+}
+
+h2 {
+    font-size: 35px;
+    margin: 0;
+}
+
+p {
+    text-align: center;
+    font-size: 22px;
+}
+
+.main p:last-child {
+    margin-top: 14px;
+}
