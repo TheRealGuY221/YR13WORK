@@ -23,3 +23,27 @@ function string_length($mystring){ // check the length of a string
     return $answer;
 
 }
+function check_special_characters($mystring){
+    $answer = false;
+    if(preg_match("/[^A-Za-z0-9]/", $mystring)){
+        $answer = true;
+
+    }
+        return $answer;
+
+}
+function check_start($mystring){
+    $answer = false;
+    if (preg_match("/[^A-Za-z0-9]/", $mystring[0])){
+        $answer = true;
+
+    }
+        return $answer;
+
+
+}
+function check_end($mystring){
+    if (preg_match("/[^A-Za-z0-9]/", $mystring[0])){
+        $answer = true;
+    }
+}
