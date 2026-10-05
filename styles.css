@@ -1,0 +1,468 @@
+/* Change the background color */
+body {
+    background: #515D6E;
+    margin: 0;
+    font-family: Arial, serif;
+    color: white;
+    overflow-x: hidden;
+}
+
+/* hide the scrollbar */
+::-webkit-scrollbar {
+    width: 0;
+    background: transparent;
+}
+
+.flex {
+    display: flex;
+}
+
+
+/*   NAV BAR   */
+/* Styling for the navbar */
+.nav {
+    background: #232F3E;
+    padding: 0 20px 0 20px;
+    width: 100%;
+    position: fixed;
+    display: flex;
+}
+
+/* Align the nav buttons to the right */
+.nav div {
+    margin-left: auto;
+    margin-right: 60px;
+}
+
+/* Style the nav buttons */
+.nav button {
+    background: #00000000;
+    border: 0;
+    margin: 0 20px 0 20px;
+    height: 100%;
+    width: auto;
+    font-size: 18px;
+    font-weight: bolder;
+    font-family: Arial, serif;
+    color: white;
+}
+
+/* Style the nav button on hover */
+.nav button:hover {
+    text-decoration: underline;
+}
+
+/* Style The Amazon Logo */
+#logo {
+    height: 4vh;
+    justify-self: left;
+    padding: 5px;
+    border: solid #00000000 1px;
+}
+
+/* Add border on hover */
+#logo:hover {
+    border: solid white 1px;
+}
+
+/*   TITLE   */
+/* title div settings */
+.title {
+    background: #515D6E;
+    align-items: center;
+    text-align: center;
+    padding: 75px;
+}
+
+/* title text style */
+.title h1{
+    font-size: 70px;
+    font-weight: bold;
+    margin: 0;
+    padding: 65px 0 0 0;
+}
+
+/* page description */
+.title p {
+    font-size: 26px;
+    padding-bottom: 100px;
+}
+
+
+/*   SEGMENT DIV   */
+/* main layout */
+.segment {
+    background: white;
+    color: black;
+    text-align: left;
+    padding-left: 75px;
+    display: flex;
+    overflow: hidden;
+    height: 80vh;
+}
+
+/* change the background color of the right ones */
+.segment-right {
+    background: #515D6E;
+    height: 80vh;
+}
+
+/* add a margin to the right of the info section */
+.info {
+    margin-right: 6vw;
+}
+
+/* set the set height of the div */
+.setheight {
+    height: 500px;
+}
+
+/* info for the right hand */
+.info-right {
+    margin-left: 6vw;
+    margin-right: 0;
+}
+
+/* style the header of the segment */
+.info h1 {
+    margin-top: 15vh;
+    margin-bottom: 50px;
+    font-size: 70px;
+}
+
+/* style the paragraph */
+.info p {
+    font-size: 34px;
+    margin-bottom: 10vh;
+;
+}
+
+/* table styling for the fun fact thing */
+.info table {
+    margin-left: -30px;
+    border-spacing: 30px 0;
+}
+.info table tr th {
+    font-size: 34px;
+}
+.info table tr td {
+    font-size: 24px;
+}
+
+/* style the download button */
+.downloadbtn {
+    margin-left: 20px;
+    width: 275px;
+    margin-bottom: 20px;
+    background: #df9f1f;
+    color: black;
+    border: solid transparent 2px;
+    padding: 14px;
+    border-radius: 15px;
+    font-size: 24px;
+    font-weight: bold;
+    text-decoration: none;
+    height: auto;
+    text-align: center;
+
+}
+.downloadbtn:hover {
+    border: solid black 2px;
+}
+.downloadbtn:active {
+    border: solid transparent 2px;
+}
+
+/* modify the share button */
+.segment button.share {
+    background: #777777;
+    height: 45px;
+    width: 45px;
+    border-radius: 50%;
+    text-align: center;
+    padding: 0;
+    border: solid black 2px;
+    flex-shrink: 0;
+    margin-left: auto;
+    align-self: flex-end;
+    margin-right: 40px;
+    margin-bottom: 40px;
+}
+.segment button.share:hover {
+    background: #888888;
+}
+.segment button.share:active {
+    background: #777777;
+}
+
+/* align it properly */
+.segment a {
+    align-self: flex-end;
+}
+
+/* adjust image for left of page */
+.left {
+    border-radius: 0 50px 50px 0;
+    height: 80vh;
+    margin-left: -75px;
+    margin-right: 75px;
+
+}
+
+/* adjust image for right of page */
+.right {
+    border-radius: 50px 0 0 50px;
+    height: 80vh;
+    margin-left: auto;
+    margin-right: -75px;
+}
+
+
+/*   FOOTER   */
+.footer {
+    background: #232F3E;
+    text-align: center;
+    padding: 75px 0;
+}
+
+/* label style */
+.footer label {
+    font-size: 60px;
+    font-weight: bold;
+}
+
+/* input style */
+.footer input[type=email] {
+    margin: 40px;
+    height: 70px;
+    width: 550px;
+    padding: 0 40px;
+    border-radius: 15px;
+    background: lightgray;
+    font-size: 30px;
+    border: solid black 0;
+}
+
+/* button style */
+.footer button {
+    height: 40px;
+    width: auto;
+    margin: 30px;
+    background: #232F3E;
+    border: solid black 0;
+    border-radius: 20px;
+    color: white;
+    font-size: 25px;
+    font-weight: bold;
+    text-decoration: underline;
+    text-decoration-color: transparent;
+}
+
+/* button hovered */
+.footer button:hover {
+    text-decoration-color: white;
+}
+
+/* style the amazon logo footer */
+#footerlogo {
+    height: 6vh;
+    justify-self: left;
+    padding: 5px;
+    border: solid transparent 1px;
+}
+
+/*   STYLE THE SIGNUP FORM   */
+/* background */
+.formbackground {
+    background: linear-gradient(#33333370, #33333370), url("https://amazon.jobs/content/_next/image?url=https%3A%2F%2Fcdn.cms.amazon.jobs%2F52%2F98%2Fe8136353413eb325f2d5f0817b67%2Faws-eb-sde-genai-feature-1108x836.jpg&w=3840&q=75") center;
+    background-size: cover; /* 👈 Scales the image to fill the container */
+    background-repeat: no-repeat; /* 👈 Prevents the image from tiling */padding: 100px;
+}
+
+.formbackground h1 {
+    justify-self: center;
+    font-size: 100px;
+    margin: 19% 0;
+    background: #00000040;
+}
+
+/* main div */
+.form {
+    margin-top: 30px;
+    background: #515D6E;
+    width: 40%;
+    justify-self: center;
+    border-radius: 20px;
+    border: solid #232F3E 7px;
+    text-align: center;
+    color: white;
+}
+
+/* style the title */
+.form h1 {
+    font-size: 55px;
+    margin-bottom: 30px;
+    text-decoration: underline;
+}
+
+/* style the inputs*/
+.form input {
+    height: 22px;
+    border: solid transparent 2px;
+    border-bottom: solid white 3px;
+    background: transparent;
+    font-size: 22px;
+    padding: 10px;
+    margin: 0;
+    width: 50%;
+    color: white;
+}
+.form input:focus {
+    outline: none;
+}
+.form input::placeholder{
+    color: white;
+}
+.form input[type=password] {
+    margin: 10px 0;
+}
+
+/* style the dropdown box */
+.form select {
+    border: solid white 3px;
+    background: transparent;
+    font-size: 22px;
+    padding: 7px;
+    margin: 20px 0 0 0;
+    width: 53%;
+    color: white;
+}
+.form select:focus {
+    outline: none;
+}
+.form input::placeholder {
+    color: white;
+}
+.form option {
+    background: #232F3E;
+}
+
+
+/* style the label */
+.form label {
+    font-weight: bold;
+    font-size: 0;
+    margin: 0;
+    color: transparent;
+}
+
+/* style the label at the bottom */
+.form a {
+    font-size: 22px;
+    display: inline-block;
+    margin-bottom: 50px;
+    text-decoration: none;
+}
+.form a:link,
+.form a:visited {
+    color: white;
+}
+
+/* style the button */
+.form button {
+    margin-top: 25px;
+    margin-bottom: 50px;
+    font-size: 24px;
+    font-weight: bold;
+    padding: 14px 40px;
+    border-radius: 35px;
+    background: lightgray;
+    color: black;
+    border: solid black 2px;
+    width: 50%;
+}
+.form button:hover {
+    border: black solid 2px;
+    color: white;
+    background: #354050;
+}
+
+.form table {
+    justify-self: center;
+    text-align: left;
+}
+
+
+/* chatbox styling */
+.chatbox {
+    width: 320px;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    background: #777777;
+    margin-right: 20px;
+    border-radius: 20px 20px 0 0;
+    border: 3px solid black;
+    border-bottom: 3px solid transparent;
+}
+
+.chattop {
+    height: 45px;
+    background: #df9f1f;
+    margin: 0;
+    border-radius: 20px 20px 0 0;
+    display: flex;
+    align-items: center;
+}
+
+#pfp {
+    border-radius: 50%;
+    height: 30px;
+    margin-left: 20px;
+}
+
+#name {
+    margin-left: 10px;
+    font-size: 24px;
+}
+
+#dash {
+    font-size: 22px;
+    margin: 0 20px;
+}
+
+#desc {
+    margin-top: 20px;
+    font-size: 16px;
+}
+
+.chat label {
+    font-size: 0;
+    margin: 0;
+}
+
+.chat input {
+    border: 3px solid black;
+    border-left: 0;
+    border-right: 0;
+    width: 275px;
+    height: 40px;
+    bottom: 0;
+    padding: 0 20px;
+    font-size: 18px;
+    flex-shrink: 0;
+}
+.chat input:focus {
+    outline: none;
+
+}
+
+.chat {
+    visibility: hidden;
+    width: 100%;
+    height: 0;
+    background: #777777;
+    display: flex;
+    flex-direction: column-reverse;
+    overflow-y: auto;
+}
