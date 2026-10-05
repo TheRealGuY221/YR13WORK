@@ -50,3 +50,6 @@ p {
 .main p:last-child {
     margin-top: 14px;
 }
+.contact{
+    text-align: left;
+}

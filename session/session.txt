@@ -1,0 +1,19 @@
+Session is server side  -  more secure
+Its effectively a bucket for what is presented
+On each page... Not file
+> session_start()
+This essential cannot be comitted or your code will NOT WORK if trying to access it
+Opens our connection to the session for 5 minutes
+You can extend the timeout delay on session
+
+Edit your "template"
+
+Always put session_start() after the php has be opened only put it into user accessible pages
+
+method = post action =
+
+Input = text name = 'message'
+if statment - if ($_SERVER['REQUEST_METHOD'] === 'POST'){
+
+
+}
