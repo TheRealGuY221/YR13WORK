@@ -1,18 +1,46 @@
 <?php
-    session_start();
-    require_once('assets/common.php');//calls common
+session_start();
+require_once('assets/common.php'); // calls common
 
-    if ($_SERVER['REQUEST_METHOD'] === 'POST'){
+if ($_SERVER['REQUEST_METHOD'] === 'POST'){
 
-        if(string_length($_POST['password'])){// checks the passwords length and outputs a string
-            $_SESSION['user_message'] = "Your password is long enough"; }
+    // check the length of the password
+    if(string_length($_POST['password'])){
+        $_SESSION['user_message'] = "Your password is long enough";
+    }
+    else {
+        $_SESSION['user_message'] = "Your password isnt long enough";
+    }
+    echo "<div>USER MESSAGE: " . $_SESSION['user_message'] . "</div>";
 
-        else{
-            $_SESSION['user_message'] ="Your password isnt long enough";
+    // check if the password has the word password in it
+    if (strpos($_POST['password'], 'password') !== false) {
+        $_SESSION['password'] = "Cannot have password in password";
+        echo "<div id = 'error'>USER MESSAGE: " . $_SESSION['password'] . "</div>";
+    }
+    else {
+        $_SESSION['password'] = "Password does not have password in it";
+        echo "<div id = 'success'>USER MESSAGE: " . $_SESSION['password'] . "</div>";
     }
 
+    // check for special characters
+    if(check_special_characters($_POST['password'])){
+        $_SESSION['special'] = "Special character found";
+        echo "<div>USER MESSAGE: " . $_SESSION['special'] . "</div>";
+    }
+    else {
+        $_SESSION['user_message'] = "No special characters are found in password";
+        echo "<div>USER MESSAGE: " . $_SESSION['user_message'] . "</div>";
+    }
 
-
+    // check the end of the password
+    if(check_end($_POST['password'])){
+        $_SESSION['user_message'] = "No special characters are found at the end of the password";
+    }
+    else {
+        $_SESSION['user_message'] = "Special characters are found at the end of the password";
+    }
+    echo "<div>USER MESSAGE: " . $_SESSION['user_message'] . "</div>";
 }
 ?>
 
