@@ -1,65 +1,387 @@
 <?php
+
 session_start();
-require_once('assets/common.php'); // calls common
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST'){
+require_once('assets/common.php');
 
-    // check the length of the password
-    if(string_length($_POST['password'])){
-        $_SESSION['user_message'] = "Your password is long enough";
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+    $password = $_POST['password'];
+
+
+    /*
+    ==========================
+    PASSWORD LENGTH
+    ==========================
+    */
+
+    if (string_length($password)) {
+
+        $_SESSION['length'] = "Your password is long enough";
+        $_SESSION['length_status'] = "good";
+
+    } else {
+
+        $_SESSION['length'] = "Your password isn't long enough";
+        $_SESSION['length_status'] = "bad";
     }
-    else {
-        $_SESSION['user_message'] = "Your password isnt long enough";
-    }
-    echo "<div>USER MESSAGE: " . $_SESSION['user_message'] . "</div>";
 
-    // check if the password has the word password in it
-    if (strpos($_POST['password'], 'password') !== false) {
+
+    /*
+    ==========================
+    PASSWORD WORD CHECK
+    ==========================
+    */
+
+    if (strpos($password, 'password') !== false) {
+
         $_SESSION['password'] = "Cannot have password in password";
-        echo "<div id = 'error'>USER MESSAGE: " . $_SESSION['password'] . "</div>";
-    }
-    else {
+        $_SESSION['password_status'] = "bad";
+
+    } else {
+
         $_SESSION['password'] = "Password does not have password in it";
-        echo "<div id = 'success'>USER MESSAGE: " . $_SESSION['password'] . "</div>";
+        $_SESSION['password_status'] = "good";
     }
 
-    // check for special characters
-    if(check_special_characters($_POST['password'])){
+
+    /*
+    ==========================
+    SPECIAL CHARACTER
+    ==========================
+    */
+
+    if (check_special_characters($password)) {
+
         $_SESSION['special'] = "Special character found";
-        echo "<div>USER MESSAGE: " . $_SESSION['special'] . "</div>";
-    }
-    else {
-        $_SESSION['user_message'] = "No special characters are found in password";
-        echo "<div>USER MESSAGE: " . $_SESSION['user_message'] . "</div>";
+        $_SESSION['special_status'] = "good";
+
+    } else {
+
+        $_SESSION['special'] = "No special characters are found in password";
+        $_SESSION['special_status'] = "bad";
     }
 
-    // check the end of the password
-    if(check_end($_POST['password'])){
-        $_SESSION['user_message'] = "No special characters are found at the end of the password";
+
+    /*
+    ==========================
+    UPPERCASE
+    ==========================
+    */
+
+    if (hasuppercase($password)) {
+
+        $_SESSION['uppercase'] = "Uppercase character found";
+        $_SESSION['uppercase_status'] = "good";
+
+    } else {
+
+        $_SESSION['uppercase'] = "No uppercase character found";
+        $_SESSION['uppercase_status'] = "bad";
     }
-    else {
-        $_SESSION['user_message'] = "Special characters are found at the end of the password";
+
+
+    /*
+    ==========================
+    LOWERCASE
+    ==========================
+    */
+
+    if (haslowercase($password)) {
+
+        $_SESSION['lowercase'] = "Lowercase character found";
+        $_SESSION['lowercase_status'] = "good";
+
+    } else {
+
+        $_SESSION['lowercase'] = "No lowercase character found";
+        $_SESSION['lowercase_status'] = "bad";
     }
-    echo "<div>USER MESSAGE: " . $_SESSION['user_message'] . "</div>";
+
+
+    /*
+    ==========================
+    NUMBER
+    ==========================
+    */
+
+    if (hasnumber($password)) {
+
+        $_SESSION['number'] = "Number found";
+        $_SESSION['number_status'] = "good";
+
+    } else {
+
+        $_SESSION['number'] = "No number found";
+        $_SESSION['number_status'] = "bad";
+    }
+
+
+    /*
+    ==========================
+    FIRST CHARACTER
+    ==========================
+    */
+
+    if (check_start($password)) {
+
+        $_SESSION['start'] = "First character is not special";
+        $_SESSION['start_status'] = "good";
+
+    } else {
+
+        $_SESSION['start'] = "Special character found at the start";
+        $_SESSION['start_status'] = "bad";
+    }
+
+
+    /*
+    ==========================
+    LAST CHARACTER
+    ==========================
+    */
+
+    if (check_end($password)) {
+
+        $_SESSION['end'] = "Special character found at the end";
+        $_SESSION['end_status'] = "bad";
+
+    } else {
+
+        $_SESSION['end'] = "Last character is not special";
+        $_SESSION['end_status'] = "good";
+    }
+
+
+    /*
+    ==========================
+    FIRST CHARACTER NUMBER
+    ==========================
+    */
+
+    if (fum($password)) {
+
+        $_SESSION['firstnumber'] = "First character is not a number";
+        $_SESSION['firstnumber_status'] = "good";
+
+    } else {
+
+        $_SESSION['firstnumber'] = "First character cannot be a number";
+        $_SESSION['firstnumber_status'] = "bad";
+    }
 }
+
 ?>
+
+<!DOCTYPE html>
 
 <html>
 
+<head>
+
+    <title>Password Checker</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+
 <body>
-<?php
-echo user_message();
-?>
-
-<form action="" method="post">
-                <h1>Form</h1>
-
-                <!-- put all the inputs and labels in a table to allign em -->
-                <input name="password"  type="text" required>
-                <input type = submit>
-</form>
 
 
 
-                    </body>
+<h1>Passwords</h1>
+
+<h2>Password Checker</h2>
+
+<h3>Check How Strong your password is below</h3>
+
+
+
+<div class="good-password">
+    Good Password
+</div>
+
+
+
+
+<div class="bad-password">
+    Bad Password
+</div>
+
+
+
+<div class="password-area">
+
+
+    <form method="POST">
+
+        <input
+                type="text"
+                name="password"
+                class="password-input"
+                placeholder="Enter Password"
+                required
+        >
+
+        <button
+                type="submit"
+                class="check-button">
+
+            Check Password
+
+        </button>
+
+    </form>
+
+
+
+
+    <?php if ($_SERVER['REQUEST_METHOD'] === 'POST') { ?>
+
+        <div class="messages">
+
+
+
+
+            <div class="message <?php echo $_SESSION['length_status']; ?>">
+
+                <?php echo $_SESSION['length']; ?>
+
+            </div>
+
+
+
+
+            <div class="message <?php echo $_SESSION['password_status']; ?>">
+
+                <?php echo $_SESSION['password']; ?>
+
+            </div>
+
+
+
+
+            <div class="message <?php echo $_SESSION['special_status']; ?>">
+
+                <?php echo $_SESSION['special']; ?>
+
+            </div>
+
+
+
+
+            <div class="message <?php echo $_SESSION['uppercase_status']; ?>">
+
+                <?php echo $_SESSION['uppercase']; ?>
+
+            </div>
+
+
+
+            <div class="message <?php echo $_SESSION['lowercase_status']; ?>">
+
+                <?php echo $_SESSION['lowercase']; ?>
+
+            </div>
+
+
+
+
+            <div class="message <?php echo $_SESSION['number_status']; ?>">
+
+                <?php echo $_SESSION['number']; ?>
+
+            </div>
+
+
+
+            <div class="message <?php echo $_SESSION['start_status']; ?>">
+
+                <?php echo $_SESSION['start']; ?>
+
+            </div>
+
+
+
+
+            <div class="message <?php echo $_SESSION['end_status']; ?>">
+
+                <?php echo $_SESSION['end']; ?>
+
+            </div>
+
+
+
+            <div class="message <?php echo $_SESSION['firstnumber_status']; ?>">
+
+                <?php echo $_SESSION['firstnumber']; ?>
+
+            </div>
+
+
+        </div>
+
+    <?php } ?>
+
+
+</div>
+
+
+
+
+<div class="rules">
+
+    <div class="rules-title">
+        Password Rules
+    </div>
+
+
+    <div class="rule">
+        At least one Special character
+    </div>
+
+
+    <div class="rule">
+        At least one upper case Character
+    </div>
+
+
+    <div class="rule">
+        At least one lowercase Character
+    </div>
+
+
+    <div class="rule">
+        One number must be present
+    </div>
+
+
+    <div class="rule">
+        First character cannot be a special character
+    </div>
+
+
+    <div class="rule">
+        Last character cannot be a special character
+    </div>
+
+
+    <div class="rule">
+        The word "password" cannot be in the password
+    </div>
+
+
+    <div class="rule">
+        First character cannot be a number
+    </div>
+
+</div>
+<div class = "buttons">
+<a href="bad.html">Bad Passwords</a>
+<a href="good.html">Good Password</a>
+</div>
+</body>
+
 </html>
