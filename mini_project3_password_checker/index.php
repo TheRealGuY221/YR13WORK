@@ -8,14 +8,6 @@ require_once('assets/common.php');
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $password = $_POST['password'];
-
-
-    /*
-    ==========================
-    PASSWORD LENGTH
-    ==========================
-    */
-
     if (string_length($password)) {
 
         $_SESSION['length'] = "Your password is long enough";
@@ -26,14 +18,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['length'] = "Your password isn't long enough";
         $_SESSION['length_status'] = "bad";
     }
-
-
-    /*
-    ==========================
-    PASSWORD WORD CHECK
-    ==========================
-    */
-
     if (strpos($password, 'password') !== false) {
 
         $_SESSION['password'] = "Cannot have password in password";
@@ -44,14 +28,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['password'] = "Password does not have password in it";
         $_SESSION['password_status'] = "good";
     }
-
-
-    /*
-    ==========================
-    SPECIAL CHARACTER
-    ==========================
-    */
-
     if (check_special_characters($password)) {
 
         $_SESSION['special'] = "Special character found";
@@ -62,14 +38,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['special'] = "No special characters are found in password";
         $_SESSION['special_status'] = "bad";
     }
-
-
-    /*
-    ==========================
-    UPPERCASE
-    ==========================
-    */
-
     if (hasuppercase($password)) {
 
         $_SESSION['uppercase'] = "Uppercase character found";
@@ -80,14 +48,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['uppercase'] = "No uppercase character found";
         $_SESSION['uppercase_status'] = "bad";
     }
-
-
-    /*
-    ==========================
-    LOWERCASE
-    ==========================
-    */
-
     if (haslowercase($password)) {
 
         $_SESSION['lowercase'] = "Lowercase character found";
@@ -98,14 +58,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['lowercase'] = "No lowercase character found";
         $_SESSION['lowercase_status'] = "bad";
     }
-
-
-    /*
-    ==========================
-    NUMBER
-    ==========================
-    */
-
     if (hasnumber($password)) {
 
         $_SESSION['number'] = "Number found";
@@ -116,14 +68,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['number'] = "No number found";
         $_SESSION['number_status'] = "bad";
     }
-
-
-    /*
-    ==========================
-    FIRST CHARACTER
-    ==========================
-    */
-
     if (check_start($password)) {
 
         $_SESSION['start'] = "First character is not special";
@@ -134,14 +78,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['start'] = "Special character found at the start";
         $_SESSION['start_status'] = "bad";
     }
-
-
-    /*
-    ==========================
-    LAST CHARACTER
-    ==========================
-    */
-
     if (check_end($password)) {
 
         $_SESSION['end'] = "Special character found at the end";
@@ -152,14 +88,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['end'] = "Last character is not special";
         $_SESSION['end_status'] = "good";
     }
-
-
-    /*
-    ==========================
-    FIRST CHARACTER NUMBER
-    ==========================
-    */
-
     if (fum($password)) {
 
         $_SESSION['firstnumber'] = "First character is not a number";
