@@ -1,0 +1,28 @@
+<?php
+
+session_start();
+
+//imports
+require_once "session/dbconnect.php";
+require_once "session/common.php";
+
+//el php code to handle sign up
+
+//check if was sent as post request from form
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    try {
+        if(register(dbconnect_insert())) { //if it works go into this
+            //alert that they signed up
+            header('Location: collection.php');
+            exit();
+        }
+    } catch (PDOException $e) { //catch db error
+        $_Session["usermessage"] = "Database error: " . $e->getMessage();
+        // Throw the exception
+        throw $e; // Re-throw the exception  // outputs the error
+    } catch (Exception $e) { //catch other error
+        $_Session["usermessage"] = "Exception: " . $e->getMessage();
+        throw $e;
+    }
+}
+?>
