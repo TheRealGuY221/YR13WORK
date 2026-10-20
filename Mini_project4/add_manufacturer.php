@@ -1,6 +1,6 @@
 <?php
 //import the stuff
-require_once "session/dbconnnect.php";
+require_once "session/dbconnect.php";
 require_once "session/common.php";
 
 //el php code to handle sign up
@@ -23,3 +23,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 ?>
+<html>
+<body>
+
+<h2>Manufacturer Sign Up</h2>
+
+<form action="add_manufacturer.php" method="POST">
+
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="ManN      ame" required>
+    <br><br>
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required>
+    <br><br>
+
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" required>
+    <br><br>
+
+    <input type="submit" value="Sign Up">
+
+</form>
+
+</body>
+</html>

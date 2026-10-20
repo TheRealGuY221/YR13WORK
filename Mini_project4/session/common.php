@@ -96,9 +96,23 @@ function register($conn){
 }
 
 //function to add a school
-function add_manufacturer($conn){
+function add_manufacturer($conn): true
+{
     //prepare and execute the sql query
     $sql = "INSERT INTO manufacturer (Name , Location) VALUES (?, ?)";
+    $stmt = $conn->prepare($sql); //prepare to sql
+
+    $stmt->bindParam(1, $_POST['ManName']);
+    $stmt->bindParam(2, $_POST['ManLocation']);
+
+    $stmt->execute(); //run the query to insert
+    $conn = null; //closes the connection so cant be abused
+    return true; //registration successfull
+}
+function add_game($conn): true
+{
+    //prepare and execute the sql query
+    $sql = "INSERT INTO game (Name , Location) VALUES (?, ?)";
     $stmt = $conn->prepare($sql); //prepare to sql
 
     $stmt->bindParam(1, $_POST['ManName']);

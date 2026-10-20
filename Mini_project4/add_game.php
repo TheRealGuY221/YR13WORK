@@ -1,6 +1,6 @@
 <?php
 //import the stuff
-require_once "session/dbconnnect.php";
+require_once "session/dbconnect.php";
 require_once "session/common.php";
 
 //el php code to handle sign up
