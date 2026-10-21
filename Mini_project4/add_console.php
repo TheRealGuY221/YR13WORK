@@ -23,3 +23,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 ?>
+<html>
+<body>
+
+<h2>Console adder</h2>
+
+<form action="add_game.php" method="POST">
+
+    <label for="name">Name:</label>
+    <input type="text" id="GameName" name="GameName" required>
+    <br><br>
+
+    <label for="Location">Company:</label>
+    <input type="text" id="GameLocation" name="GameLocation" required>
+    <br><br>
+
+    <label for="Price">Price:</label>
+    <input type="text" id="Price" name="GamePrice" required>
+    <br><br>
+
+
+    <input type="submit" value="Sign Up">
+
+</form>
+
+</body>
+</html>
+
