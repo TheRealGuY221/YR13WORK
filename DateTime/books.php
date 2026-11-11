@@ -14,5 +14,4 @@ if (!isset($_SESSION["userid"]) or !$_SESSION["userid"]) {
     exit;
 }
 
-?>
 

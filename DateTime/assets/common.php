@@ -56,3 +56,8 @@ function login($conn, $email){
     }
 
 }
+function make_booking($conn){
+    $dt = new DateTime($_POST['appt-time']);
+    $mysql_datetime = $dt->format('Y-m-d H:i:s');
+
+}
