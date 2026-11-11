@@ -1,78 +1,84 @@
-<?php
-//imports
-require_once "session/common.php";
-require_once "session/dbconnect.php";
+<?php // This open the php code section
 
-//start the session
 session_start();
 
-//decide if its login page or signup page
-$loginPage = true;
-//check if get is set to a page
-if (isset($_GET["page"]) && $_GET["page"] == "register") {$loginPage=false;}
-else if (isset($_GET["page"]) && $_GET["page"] == "login") {$loginPage=true;}
-else if (isset($_SESSION["page"]) && $_SESSION["page"] == "register") {$loginPage=false;  $_SESSION["page"]="";}
-else if (isset($_SESSION["page"]) && $_SESSION["page"] == "login") {$loginPage=true; $_SESSION["page"]="";}
+require_once "assets/common.php";
+require_once "assets/dbconnect.php";
 
-//if signed up
-if (isset($_POST["Email"])) {
-    //check if pswd = pswd check
-    if ($_POST["Password"] == $_POST["Cpassword"]){
-        //check the isn't taken
-        if (onlyuser(dbconnect_insert(), $_POST["Email"])) {
-            //register
-            reguser(dbconnect_insert());
-            //set to login as account made
-            $_SESSION["page"] = "login";
-            //refresh page
-            header("Location: login.php");
-            exit;
-        }
-        else {
-            $_SESSION["usermessage"] = "Email already in use.";
-            $_SESSION["page"] = "register";
-        }
-    }
-    else {
-        $_SESSION["usermessage"] = "Passwords do not match!";
-        $_SESSION["page"] = "register";
-    }
+if (isset($_SESSION['userid'])) {
+    $_SESSION['usermessage'] = "ERROR: You have already logged in!";
+    header("Location: index.php");
+    exit;
+} elseif ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $usr = login(dbconn(), $_POST["email"]);
 
-}
-
-//if logged in
-else if (isset($_POST["Email"])) {
-    $_SESSION["PatientID"] = login(dbconnect_insert());
-    if ($_SESSION["PatientID"] != false) {
-        header("Location: private.php");
+    if ($usr && password_verify($_POST["password"], $usr["password"])) { // verifies the password is matched
+        $_SESSION["userid"] = $usr["patientid"];
+        $_SESSION['usermessage'] = "SUCCESS: User Successfully Logged In ";
+        header("location:index.php");  //redirect on success
         exit;
+    } elseif(!$usr) {
+        $_SESSION['usermessage'] = "ERROR: User not found";
+        header("Location: login.php");
+        exit; // Stop further execution
+    }else {
+        $_SESSION['usermessage'] = "ERROR: User login passwords not match";
+        header("Location: login.php");
+        exit; // Stop further execution
+
     }
 }
-
 ?>
 
-
-
-
-
-
-
-
-
+<!DOCTYPE html>
 
 <html>
-<title>Login</title>
+
+<head>
+
+    <title>Version 1</title>
+    <link rel='stylesheet' type='text/css' href='assets/styles.css' />
+
+</head>
+
 <body>
-<form action="login.php" method="post">
 
-            <h1>Login</h1>
-            <label for="email">Email</label><br>
-            <input name="email" id="email" placeholder="Enter Email..." type="email" required><br>
-            <label for="pswd">Password</label>
-            <input name="pswd" id="pswd" placeholder="Enter password..." type="password" required><br>
-            <button type="submit">Login</button><br>
-            <a href="Index.php">Dont have an account? Register</a>
+<div class='container'>
 
-</form>
+    <?php
+    require_once "assets/nav.php";
+    ?>
+
+    <div class='content'>
+        <br>
+
+        <h2> Primary Oaks - User Login System</h2>
+
+        <p class='content'> Please Enter the needed credentials below! </p>
+
+        <?php
+        echo usermessage();
+        ?>
+
+        <form action='' method='post'>
+            <br>
+
+            <input type='email' name='email' placeholder='E-mail Address' required/>
+            <br>
+
+            <input type='password' name='password' placeholder='Password' required/>
+            <br>
+
+            <input type='submit' name='submit' value='Login' />
+
+        </form>
+
+        <br>
+
+    </div>
+
+</div>
+
 </body>
+
 </html>

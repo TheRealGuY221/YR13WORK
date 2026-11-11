@@ -3,7 +3,7 @@
 require_once "session/common.php";
 require_once "session/dbconnect.php";
 
-//start the session
+//start the assets
 session_start();
 
 //decide if its login page or signup page
@@ -44,7 +44,7 @@ if (isset($_POST["name"])) {
 else if (isset($_POST["email"])) {
     $_SESSION["userid"] = login(dbconnect_insert());
     if ($_SESSION["userid"] != false) {
-        header("Location: private.php");
+        header("Location: register.php");
         exit;
     }
 }

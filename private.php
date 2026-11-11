@@ -1,6 +1,6 @@
 <?php
 
-//start the session
+//start the assets
 session_start();
 
 

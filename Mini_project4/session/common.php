@@ -52,7 +52,7 @@ function login($conn) {
     return false;
 }
 
-// User message to pass error/success messages through the session
+// User message to pass error/success messages through the assets
 function user_message() {
     $message = "";
 
