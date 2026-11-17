@@ -3,6 +3,8 @@
 //start the assets
 session_start();
 
+require_once "assets/dbconnect.php";
+require_once "assets/common.php";
 
 
 //stop the page from loading if user is not logged in
@@ -16,10 +18,12 @@ if (!isset($_SESSION["userid"]) or !$_SESSION["userid"]) {
     try {
         if (delete_appoitnment(dbconn())) {
             $_SESSION["usermessage"] = "Book Deleted";
+            header("Location: bookings.php");
+            exit;
 
 
         }
-    }
+    } catch (PDOException $e) {}
 }
 
 ?>
@@ -37,15 +41,15 @@ if (!isset($_SESSION["userid"]) or !$_SESSION["userid"]) {
                     name="appt-time"
             />
 
-            <select name='professional'>
-                <?php
-                $appts = appt_getter();
 
-                foreach () {
+                <?php
+                $appts = appt_getter(dbconn());
+
+                foreach ($appts as $appt) {
                     echo '<option value="' . $appt['proid'] . '">' . $appt['role'] . ' ' . $appt['fname'] . ' ' . $appt['sname'] . '</option>';
                 }
                 ?>
-            </select>
+
 
             <input type='submit' name='delete' value='Delete'>
         </form>
