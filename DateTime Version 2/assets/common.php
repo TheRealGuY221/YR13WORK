@@ -97,3 +97,12 @@ function delete_appoitnment($conn,$mysql_datetime){
     $conn = null;
     return true;
 }
+function account($conn){
+    $sql = "SELECT FROM patient WHERE patientid = ? ";
+    $stmt = $conn->prepare($sql);
+    $stmt->bindParam(1,$_SESSION['userid']);
+    $stmt->execute();
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    $conn = null;
+    return $result;
+}
