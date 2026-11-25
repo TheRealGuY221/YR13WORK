@@ -1,0 +1,8 @@
+body { background-color: #1e1e2f; font-family: Arial, sans-serif; color: white; margin: 0; }
+.container { padding: 20px; }
+nav ul { list-style: none; display: flex; flex-wrap: wrap; background: #121225; padding: 15px; gap: 20px; }
+a { color: #d2baff; }
+nav a { color: white; text-decoration: none; }
+nav a:hover { color: #b388ff; }
+input, button { padding: 6px; margin: 5px; }
+label { display: block; }

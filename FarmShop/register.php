@@ -1,0 +1,5 @@
+<?php
+session_start();
+require_once "assets/common.php";
+require_once "assets/dbconnect.php";
+if($_SERVER['REQUEST_METHOD']==='POST'){check_post();foreach(['email','password','password_confirm','fname','sname','address','PhoneNumber'] as $key){if(empty($_POST[$key]))go('register.php','Complete all fields.');}if(!filter_var($_POST['email'],FILTER_VALIDATE_EMAIL)||$_POST['password']!==$_POST['password_confirm'])go('register.php','Check email and matching passwords.');try{reg_user(dbconn());go('login.php','Registration successful.');}catch(PDOException $e){error_log($e->getMessage());go('register.php','Registration failed. Email may already exist.');}}page('Register');?><form method="post"><?php field();foreach(['email'=>'email','password'=>'password','password_confirm'=>'password','fname'=>'text','sname'=>'text','address'=>'text','PhoneNumber'=>'tel'] as $name=>$type){echo '<label>'.h($name).'<input name="'.h($name).'" type="'.$type.'" required></label>';}?><button>Register</button></form><?php endpage();
