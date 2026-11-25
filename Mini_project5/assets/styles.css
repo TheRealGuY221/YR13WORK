@@ -1,0 +1,38 @@
+body {
+    background-color: #1e1e2f;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    color: white;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 20px;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 15px;
+    display: flex;
+    background-color: #121225;
+    justify-content: center;
+}
+
+nav li {
+    margin: 10px 20px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+nav a:hover {
+    color: #b388ff;
+    text-decoration: underline;
+}

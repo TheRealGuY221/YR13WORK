@@ -1,0 +1,105 @@
+<?php
+
+function usermessage(){  # function to check for a user message and return echoable string
+    if(isset($_SESSION['usermessage'])){  # checks to see if it is set
+
+        $msg = $_SESSION['usermessage'];  # formats string appropriately
+        unset($_SESSION['usermessage']);  # unsets the user message so it doesn't keep being displayed
+
+    } else {
+        $msg = "";  # if no message has been set, returns empty string.
+    }
+    return $msg;
+}
+
+
+function reg_user($conn){
+
+    // Prepare and execute the SQL query
+    $sql = "INSERT INTO user (Email, Password, Fname, Sname, Address, signuptime , PhoneNumber) VALUES (?, ?, ?, ?, ?, ?, ?)";  //prepare the sql to be sent
+    $stmt = $conn->prepare($sql); //prepare to sql
+    $dt = new DateTime($_POST['created_time']);
+    $mysql_datetime = $dt->format('Y-m-d H:i:s');
+
+    $stmt->bindParam(1, $_POST['email']);  //bind parameters for security
+    // Hash the password
+    $pwd = password_hash($_POST['password'], PASSWORD_DEFAULT);
+    $stmt->bindParam(2, $pwd);
+    $stmt->bindParam(3, $_POST['fname']);
+    $stmt->bindParam(4, $_POST['sname']);
+    $stmt->bindParam(5, $_POST['address']);
+    $stmt->bindParam(6, $_POST[$mysql_datetime]);
+    $stmt->bindParam(7, $_POST['phone_number']);
+
+
+    $stmt->execute();  //run the query to insert
+    $conn = null;  // closes the connection so cant be abused.
+    return true; // Registration successful
+}
+
+function login($conn, $email){
+    $sql = "SELECT patientid, password FROM patient WHERE email = ?"; //set up the sql statement
+    $stmt = $conn->prepare($sql); //prepares
+    $stmt->bindParam(1,$email);  //binds the parameters to execute
+    $stmt->execute(); //run the sql code
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);  //brings back results
+    $conn = null;  // nulls off the connection so cant be abused.
+
+    if($result){  // if there is a result returned
+        return $result;
+
+    } else {
+        return false;
+    }
+
+}
+function pro_getter($conn){
+    $sql = "SELECT * FROM professional";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $conn = null;
+    return $result;
+}
+function make_booking($conn){
+    $dt = new DateTime($_POST['appt-time']);
+    $mysql_datetime = $dt->format('Y-m-d H:i:s');
+
+    $notes = "";
+
+    $sql ="INSERT INTO appoitment(datetime, notes, proid, patientid)";
+    $stmt = $conn->prepare($sql);
+    $stmt->bindParam(1, $mysql_datetime);
+    $stmt->bindParam(2, $notes);
+    $stmt->bindParam(3, $_POST['professional']);
+    $stmt->bindParam(4, $_POST['userid']);
+    $stmt->execute();
+
+
+}
+function appt_getter($conn){
+$sql = "SELECT p.fname, p.sname, a.datetime, a.notes, bookedon From appointment AS a INNER JOIN professional as p ON a.professtional = p.professtional)";
+$stmt = $conn->prepare($sql);
+$stmt->execute();
+$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$conn = null;
+return $result;
+
+}
+function delete_appoitnment($conn,$mysql_datetime){
+    $sql = "DELETE FROM appointment WHERE datetime = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bindParam(1, $mysql_datetime);
+    $stmt->execute();
+    $conn = null;
+    return true;
+}
+function account($conn){
+    $sql = "SELECT FROM patient WHERE patientid = ? ";
+    $stmt = $conn->prepare($sql);
+    $stmt->bindParam(1,$_SESSION['userid']);
+    $stmt->execute();
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    $conn = null;
+    return $result;
+}
